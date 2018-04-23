@@ -1,0 +1,6 @@
+<div *ngFor="let planet of planets">
+  <p> {{planet.name}}
+    <app-astro-styleguide [sign]="planet.sign"></app-astro-styleguide>
+    {{planet.degrees}}
+  </p>
+</div>

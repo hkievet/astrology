@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="form-wrapper" (keyup.enter)="getBirthday()">
+    <input type="text" [(ngModel)]="wikiName"/>
+    <button (click)="getBirthday()" >Submit</button>
+    <div>Birthday: <span>{{birthday}}</span></div>
+</div>
+<div class="loader" *ngIf="loading"></div>
+
+<div class="options">
+    <div *ngFor="let entry of entryList">
+        <div (click)="wikiName=entry.name; birthday=entry.birthday; getAstrology(entry.birthday)">{{entry.name}}</div>
+    </div>
+</div>
+
+<hr/>
+
+<ng-container *ngIf="planets.length > 0">
+    <app-planet-summary [planets]="planets"></app-planet-summary>
+</ng-container>
