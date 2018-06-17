@@ -1,6 +1,11 @@
-<div *ngFor="let planet of planets">
-  <p> {{planet.name}}
-    <app-astro-styleguide [sign]="planet.sign"></app-astro-styleguide>
-    {{planet.degrees}}
-  </p>
-</div>
+<mat-list role="list">
+  <mat-list-item *ngFor="let planet of planets" role="listitem">
+      <div class="planetName">
+        {{planet.name}}
+      </div>
+      <app-astro-styleguide class="sign" [sign]="planet.sign"></app-astro-styleguide>
+      <div class="deg">
+        {{planet.degrees}}
+      </div>
+  </mat-list-item>
+</mat-list>
