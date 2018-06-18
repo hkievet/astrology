@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 
-// const url = "http://localhost:8080/"
+// const astro_url = "http://localhost:5000/"
 const astro_url = "http://35.173.122.138:5000/"
 
 @Injectable()
@@ -22,8 +22,9 @@ export class BirthdayService {
 }
 
 function formatWeirdServerDate(date: Date): string {
-  const dateSplit = [ date.getDate(), date.getMonth(), date.getFullYear() ]
-  let newDate = dateSplit[2] + '-' + (dateSplit[1] + 1) + '-' + dateSplit[0]
-  console.log(dateSplit);
+  date = new Date(date);
+  // take the date and adjust for utc
+  const dateSplit = [ date.getUTCDate(), date.getUTCMonth(), date.getUTCFullYear(), date.getUTCHours(), date.getUTCMinutes() ]
+  let newDate = dateSplit[2] + '-' + (dateSplit[1] + 1) + '-' + dateSplit[0] + ' ' + dateSplit[3] + ':' + dateSplit[4];
   return newDate
 }

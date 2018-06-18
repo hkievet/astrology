@@ -50,13 +50,17 @@
 }
 
 #footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
+    padding-top: 25px;
     height:30px;
     width:100%;
     text-align: center;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: lightgray;
     font-size: .8em;
+ }
+
+ .date-title {
+     font-weight: bold;
+     margin: 0 auto;
+     text-align: center;
  }

@@ -3,7 +3,7 @@
     <div class="main-content">
         <div class="form-wrapper" (keyup.enter)="getAstrology(inputDate)">
             <mat-form-field class="person-input">
-                <input matInput [matDatepicker]="datepicker" type="text" placeholder="mm/dd/yyyy" [(ngModel)]="inputDate" />
+                <input #dateInput matInput [matDatepicker]="datepicker" type="text" placeholder="Lookup Date and Time" [(ngModel)]="inputDate" />
                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker></mat-datepicker>
             </mat-form-field>
@@ -15,7 +15,7 @@
         <mat-spinner *ngIf="loading"></mat-spinner>
         <div class="planet-stuff" *ngIf="!loading && planets.length">
             <mat-card *ngIf="planets.length > 0 && !loading">
-                <div>{{searchDate | date: 'longDate'}} @ {{time}}</div>
+                <div class="date-title">{{searchDate | date: 'short'}} ({{searchDate | date: 'z'}})</div>
                 <br/>
                 <app-planet-summary [planets]="planets"></app-planet-summary>
             </mat-card>

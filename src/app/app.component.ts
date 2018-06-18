@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BirthdayService } from './birthday.service';
 import { Planet } from './data-structs';
 
@@ -8,14 +8,15 @@ import { Planet } from './data-structs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor( private birthdayService: BirthdayService ) { }
+  @ViewChild('dateInput') dateInputElement: ElementRef;
+  constructor(private birthdayService: BirthdayService) { }
 
   title = 'Astrolizer';
-  public inputDate: Date; // the search text
   public searchDate: Date;
   public errorMsg: string; // the error message to be displayed
   public loading = false;
-  public time = "12:00 AM UTC";
+  public today = new Date();
+  public inputDate: Date; // the search text
 
   public planets: Planet[] = [];
 
@@ -23,48 +24,34 @@ export class AppComponent implements OnInit {
   }
 
   // todo: convert this to a pipe because this is a pure function computed on the server side of things
-  public getAstrology(date) {
+  public getAstrology(date: Date) {
     this.errorMsg = "";
     this.planets = [];
     if (validateDate(date) === "") {
       this.errorMsg = "Invalid Date";
       return;
     }
+    let inputString = this.dateInputElement.nativeElement.value;
+    // if there is no time, default the time to noon
+    if (inputString.split(' ').length == 1) {
+      inputString += " 12:00 PM"
+      date.setHours(12);
+    }
+    this.dateInputElement.nativeElement.value = inputString;
     this.searchDate = date;
     this.loading = true;
     this.birthdayService.getAstrology(date).subscribe(a => {
-      this.planets=a;
+      this.planets = a;
       this.loading = false;
     });
   }
 }
 
-function validateDate(date: string): string {
-  if (!date) { 
+function validateDate(date: Date): string {
+  if (!date || !new Date(date)) {
     return "";
   } else {
     return "yes";
   }
-  /*
-  if ( !new Date(date) ) {
-    return "";
-  }
-  const split = String(date).split('/');
-  if ( split || split.length < 3 ) {
-    return ""
-  }
-
-  let d = Number(split[0]);
-  let m = Number(split[1]);
-  let y = Number(split[2]);
-
-  if (d === NaN || m === NaN || y === NaN ) {
-    return ""
-  }
-
-  if (Number(d) === NaN || Number(m) === NaN || Number(y) === NaN) {
-    return ""
-  }
-  */
 }
 
