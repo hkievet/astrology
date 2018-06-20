@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 // const astro_url = "http://localhost:5000/"
-const astro_url = "http://35.173.122.138:5000/"
+const astro_url = "http://54.144.1.193:5000/"
 
 @Injectable()
 export class BirthdayService {
