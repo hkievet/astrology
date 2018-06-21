@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 
-const astro_url = "https://18.208.88.67:5000/"
+const astro_url = "http://api.astrolizer.com:5000/"
 
 @Injectable()
 export class BirthdayService {
