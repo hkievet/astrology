@@ -9,10 +9,10 @@
     </div>
   </div>
   <ng-container *ngIf="planet.showDetails">
-    <div class="flex-row" >
+    <div class="flex-row" [@accordian]="true">
       <p>{{planet.planetDescription}}</p>
     </div>
-    <div class="flex-row description" >
+    <div class="flex-row description" [@accordian]="false">
       <p>{{planet.signInfo.name | titlecase}} is the {{planet.signInfo.flow}} {{planet.signInfo.element}} sign.</p>
     </div>
   </ng-container>
