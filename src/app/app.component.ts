@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   public planets: Planet[] = [];
 
   public ngOnInit() {
+    this.getAstrology(new Date());
   }
 
   // todo: convert this to a pipe because this is a pure function computed on the server side of things
@@ -40,8 +41,8 @@ export class AppComponent implements OnInit {
     this.dateInputElement.nativeElement.value = inputString;
     this.searchDate = date;
     this.loading = true;
-    this.birthdayService.getAstrology(date).subscribe(a => {
-      this.planets = a;
+    this.birthdayService.getAstrology(date).subscribe( planets => {
+      this.planets = planets;
       this.loading = false;
     });
   }

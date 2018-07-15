@@ -8,7 +8,10 @@ import { Planet } from '../data-structs';
 })
 export class PlanetSummaryComponent implements OnInit {
   @Input() planets: Planet[]
+
   constructor() { }
 
   ngOnInit() { }
+
+  public getDetails(planet: Planet) { }
 }

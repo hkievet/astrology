@@ -1,4 +1,19 @@
+$red : #CC1814;
+$green : #037F0B;
+$blue: #165593;
+$yellow: #FFDD00;
+$dark-yellow: darken($red, 1%);
+$black: #232222;
+$white: #FFFFFF;
+
 .zodiac-thumbnail {
+    border: 2px solid $white;
     height : 44px;
     width: 44px;
+    &:hover {
+        border-color: $yellow;
+        border-radius: 5px;
+        color: blue;
+        cursor: pointer;
+    }
 }

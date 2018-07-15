@@ -1,11 +1,19 @@
-<mat-list role="list">
-  <mat-list-item *ngFor="let planet of planets" role="listitem">
-      <div class="planetName">
-        {{planet.name}}
-      </div>
-      <app-astro-styleguide class="sign" [sign]="planet.sign"></app-astro-styleguide>
-      <div class="deg">
-        {{planet.degrees}}
-      </div>
-  </mat-list-item>
-</mat-list>
+<div class="container" *ngFor="let planet of planets">
+  <div class="flex-row details" (click)="planet.showDetails = !planet.showDetails">
+    <div class="planetName">
+      {{planet.name}}
+    </div>
+    <app-astro-styleguide class="sign" [sign]="planet.sign"></app-astro-styleguide>
+    <div class="deg">
+      {{planet.degrees}}
+    </div>
+  </div>
+  <ng-container *ngIf="planet.showDetails">
+    <div class="flex-row" >
+      <p>{{planet.planetDescription}}</p>
+    </div>
+    <div class="flex-row description" >
+      <p>{{planet.signInfo.name | titlecase}} is the {{planet.signInfo.flow}} {{planet.signInfo.element}} sign.</p>
+    </div>
+  </ng-container>
+</div>
